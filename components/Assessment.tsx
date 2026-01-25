@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { Question, Option } from '../types';
 import { QUESTIONS } from '../constants';
 import { Button } from './Button';
 import { ChevronRight, Check } from 'lucide-react';
