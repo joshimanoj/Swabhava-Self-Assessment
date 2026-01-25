@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Button } from './Button';
-import { ArrowRight, Flower, Shield } from 'lucide-react';
+import { ArrowRight, Shield } from 'lucide-react';
 
 interface WelcomeScreenProps {
   onStart: (name: string) => void;
@@ -25,9 +25,11 @@ export const WelcomeScreen: React.FC<WelcomeScreenProps> = ({ onStart, onAdminLo
 
       <div className="max-w-2xl w-full z-10 text-center space-y-8 animate-fade-in-up">
         <div className="flex justify-center mb-6">
-          <div className="w-16 h-16 bg-brand-dark rounded-full flex items-center justify-center shadow-2xl">
-            <Flower className="w-8 h-8 text-brand-gold" />
-          </div>
+          <img
+            src="https://www.brhat.in/assets/logo-3cfd025f.svg"
+            alt="Brhat Logo"
+            className="h-16 md:h-20"
+          />
         </div>
 
         <div className="space-y-4">
@@ -62,24 +64,24 @@ export const WelcomeScreen: React.FC<WelcomeScreenProps> = ({ onStart, onAdminLo
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm text-gray-500 pt-8 border-t border-brand-stone/50 mt-8">
-            <div className="flex flex-col items-center gap-2">
-                <span className="font-semibold text-brand-dark">5 Dimensions</span>
-                <span>Based on Bhagavad Gita</span>
-            </div>
-            <div className="flex flex-col items-center gap-2">
-                <span className="font-semibold text-brand-dark">3 Gunas</span>
-                <span>Sattva, Rajas, Tamas</span>
-            </div>
-            <div className="flex flex-col items-center gap-2">
-                <span className="font-semibold text-brand-dark">Insightful</span>
-                <span>No right or wrong answers</span>
-            </div>
+          <div className="flex flex-col items-center gap-2">
+            <span className="font-semibold text-brand-dark">5 Dimensions</span>
+            <span>Based on Bhagavad Gita</span>
+          </div>
+          <div className="flex flex-col items-center gap-2">
+            <span className="font-semibold text-brand-dark">3 Gunas</span>
+            <span>Sattva, Rajas, Tamas</span>
+          </div>
+          <div className="flex flex-col items-center gap-2">
+            <span className="font-semibold text-brand-dark">Insightful</span>
+            <span>No right or wrong answers</span>
+          </div>
         </div>
       </div>
 
       <footer className="absolute bottom-4 text-center w-full text-xs text-gray-400">
         <button onClick={onAdminLogin} className="hover:text-brand-dark transition-colors flex items-center justify-center gap-1 mx-auto">
-           <Shield className="w-3 h-3" /> Admin Portal
+          <Shield className="w-3 h-3" /> Admin Portal
         </button>
       </footer>
     </div>
