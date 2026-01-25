@@ -11,13 +11,15 @@ const App: React.FC = () => {
   const [view, setView] = useState<ViewState>('welcome');
   const [userName, setUserName] = useState('');
   const [currentResult, setCurrentResult] = useState<AssessmentResult | null>(null);
+  const [isSaving, setIsSaving] = useState(false);
 
   const handleStart = (name: string) => {
     setUserName(name);
     setView('assessment');
   };
 
-  const calculateResults = (answers: Record<number, 'A' | 'B' | 'C'>) => {
+  const calculateResults = async (answers: Record<number, 'A' | 'B' | 'C'>) => {
+    setIsSaving(true);
     const scores = {
       [Guna.Sattva]: 0,
       [Guna.Rajas]: 0,
@@ -46,8 +48,14 @@ const App: React.FC = () => {
       answers
     };
 
-    saveResult(result);
+    try {
+      await saveResult(result);
+    } catch (error) {
+      console.error("Error saving result", error);
+    }
+
     setCurrentResult(result);
+    setIsSaving(false);
     setView('results');
   };
 
@@ -63,6 +71,12 @@ const App: React.FC = () => {
 
   return (
     <main className="font-sans text-brand-dark antialiased">
+      {isSaving && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-white/80 backdrop-blur-sm">
+           <div className="animate-pulse text-brand-dark font-serif text-xl">Calculing Svabhava...</div>
+        </div>
+      )}
+
       {view === 'welcome' && (
         <WelcomeScreen 
           onStart={handleStart} 
