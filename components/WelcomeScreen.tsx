@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Button } from './Button';
 import { ArrowRight, Shield } from 'lucide-react';
+import { ThemeIcon } from './ThemeIcon';
 
 interface WelcomeScreenProps {
   onStart: (name: string) => void;
@@ -18,18 +19,14 @@ export const WelcomeScreen: React.FC<WelcomeScreenProps> = ({ onStart, onAdminLo
   };
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center p-6 bg-brand-cream relative overflow-hidden">
+    <div className="min-h-screen flex flex-col items-center p-6 bg-brand-cream relative overflow-hidden">
       {/* Decorative Background Elements */}
       <div className="absolute top-0 left-0 w-64 h-64 bg-brand-gold/10 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2" />
       <div className="absolute bottom-0 right-0 w-96 h-96 bg-brand-red/5 rounded-full blur-3xl translate-x-1/3 translate-y-1/3" />
 
-      <div className="max-w-2xl w-full z-10 text-center space-y-8 animate-fade-in-up">
+      <div className="max-w-2xl w-full z-10 text-center space-y-8 animate-fade-in-up flex-1 flex flex-col justify-center">
         <div className="flex justify-center mb-6">
-          <img
-            src="https://www.brhat.in/assets/logo-3cfd025f.svg"
-            alt="Brhat Logo"
-            className="h-16 md:h-20"
-          />
+          <ThemeIcon className="w-20 h-20" />
         </div>
 
         <div className="space-y-4">
@@ -79,8 +76,11 @@ export const WelcomeScreen: React.FC<WelcomeScreenProps> = ({ onStart, onAdminLo
         </div>
       </div>
 
-      <footer className="absolute bottom-4 text-center w-full text-xs text-gray-400">
-        <button onClick={onAdminLogin} className="hover:text-brand-dark transition-colors flex items-center justify-center gap-1 mx-auto">
+      <footer className="w-full py-8 text-center space-y-3 z-10 mt-auto">
+        <div className="text-[10px] text-gray-400 font-medium tracking-widest uppercase opacity-70">
+          Powered by Brhat
+        </div>
+        <button onClick={onAdminLogin} className="text-xs text-gray-400 hover:text-brand-dark transition-all flex items-center justify-center gap-1.5 mx-auto hover:opacity-100 opacity-60">
           <Shield className="w-3 h-3" /> Admin Portal
         </button>
       </footer>

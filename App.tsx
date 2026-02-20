@@ -36,7 +36,7 @@ const App: React.FC = () => {
     });
 
     // Determine dominant
-    const sortedGunas = Object.entries(scores).sort(([,a], [,b]) => b - a);
+    const sortedGunas = Object.entries(scores).sort(([, a], [, b]) => b - a);
     const dominant = sortedGunas[0][0] as Guna;
 
     const result: AssessmentResult = {
@@ -73,31 +73,39 @@ const App: React.FC = () => {
     <main className="font-sans text-brand-dark antialiased">
       {isSaving && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-white/80 backdrop-blur-sm">
-           <div className="animate-pulse text-brand-dark font-serif text-xl">Calculing Svabhava...</div>
+          <div className="animate-pulse text-brand-dark font-serif text-xl">Calculing Svabhava...</div>
         </div>
       )}
 
       {view === 'welcome' && (
-        <WelcomeScreen 
-          onStart={handleStart} 
-          onAdminLogin={() => setView('admin')} 
+        <WelcomeScreen
+          onStart={handleStart}
+          onAdminLogin={() => setView('admin')}
         />
       )}
-      
+
       {view === 'assessment' && (
         <Assessment onComplete={calculateResults} />
       )}
-      
+
       {view === 'results' && currentResult && (
-        <Results 
-          result={currentResult} 
-          onRetake={handleRetake} 
+        <Results
+          result={currentResult}
+          onRetake={handleRetake}
           onHome={handleHome}
         />
       )}
-      
+
       {view === 'admin' && (
         <AdminDashboard onBack={() => setView('welcome')} />
+      )}
+
+      {view !== 'welcome' && (
+        <footer className={`py-8 text-center ${view === 'admin' ? 'bg-gray-50' : 'bg-brand-cream'}`}>
+          <div className="text-[10px] text-gray-400 font-medium tracking-widest uppercase">
+            Powered by Brhat
+          </div>
+        </footer>
       )}
     </main>
   );
